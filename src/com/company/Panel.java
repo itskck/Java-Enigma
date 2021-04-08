@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class Panel extends JPanel {
+    char[] qwerty = {'Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'};
     private JPanel panel=new JPanel();
     private JButton[] buttonArray = new JButton[26];
     private ImageIcon icon = new ImageIcon("Bez nazwy.png");
@@ -17,21 +18,26 @@ public class Panel extends JPanel {
         int wiersz=0;
         int kolumna=0;
         int adj=0;
+
         for(int i=0; i<26;i++)
         {
-            if(i>8 && i<=16) {
+
+            if(i>=10 && i<=18) {
                 wiersz = 60;
                 adj=30;
             }
             else{
                 adj=0;
             }
-            if(i>=17) wiersz= 120;
-            if(i==9 || i==17) kolumna=0;
+            if(i>=19) {
+                wiersz= 120;
+                adj=90;
+            }
+            if(i==10 || i==19) kolumna=0;
             ////////////////////////////////////////////////////////////////////////////////////////////
             buttonArray[i] =
             buttonArray[i] = new JButton(icon);
-            buttonArray[i].setText(String.valueOf(i));
+            buttonArray[i].setText(String.valueOf(qwerty[i]));
             buttonArray[i].setHorizontalTextPosition(JButton.CENTER);
             buttonArray[i].setVerticalAlignment(JButton.CENTER);
             buttonArray[i].setForeground(Color.WHITE);
