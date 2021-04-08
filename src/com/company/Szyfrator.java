@@ -1,7 +1,12 @@
 package com.company;
 
 public class Szyfrator {
-    public String szyfruj(String zdanie,int statep,int states,int statel){
+    public Szyfrator() {
+
+    }
+
+    public String szyfruj(String zdanie, int statep, int states, int statel){
+
 
         int tmp=0,tmp2;
         String wyjscie="";
