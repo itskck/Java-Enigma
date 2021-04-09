@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class Panel extends JPanel {
+    Szyfrator sz1 = new Szyfrator();
     char[] qwerty = {'Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'};
     private JPanel panel=new JPanel();
     private JButton[] buttonArray = new JButton[26];
@@ -51,7 +52,8 @@ public class Panel extends JPanel {
             buttonArray[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(buttonArray[finalI].getText());
+                    System.out.println(sz1.szyfruj(buttonArray[finalI].getText().toString(),4,6,8));
+
                 }
             });
             kolumna+=60;

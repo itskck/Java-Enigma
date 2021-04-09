@@ -21,6 +21,7 @@ public class Szyfrator {
         l1.setState(statel);
 
         for(char znak: zdanie.toCharArray()) {
+           // System.out.println(znak);
             if(znak==' '){
                 wyjscie+=' ';
                 continue;
@@ -52,7 +53,7 @@ public class Szyfrator {
                 }
             }
             wyjscie+=charout;
-            System.out.println(p1.getState());
+            //System.out.println(p1.getState());
         }
         return wyjscie;
     }
