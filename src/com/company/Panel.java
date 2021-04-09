@@ -12,6 +12,15 @@ public class Panel extends JPanel {
     private JPanel panel=new JPanel();
     private JButton[] buttonArray = new JButton[26];
     private ImageIcon icon = new ImageIcon("Bez nazwy.png");
+    private JLabel lewy;
+    private JLabel srodkowy;
+    private JLabel prawy;
+    private  JButton Leftup;
+    private  JButton Leftdown;
+    private  JButton middleup;
+    private  JButton middledown;
+    private  JButton rightup;
+    private  JButton rightdown;
     Panel(){
         panel.setBackground(new Color(56,56,56));
         panel.setLayout(null);
@@ -19,7 +28,20 @@ public class Panel extends JPanel {
         int wiersz=0;
         int kolumna=0;
         int adj=0;
-
+        ////////////////////GORNY PANEL
+        Leftup=new JButton("↑");
+        Leftup.setBounds(600,0,50, 30);
+        panel.add(Leftup);
+        lewy= new JLabel("13");
+        lewy.setFont(new Font("Serif", Font.PLAIN, 14));
+        lewy.setForeground(Color.WHITE);
+        lewy.setBounds(620,35,50, 30);
+        panel.add(lewy);
+        panel.repaint();
+        Leftdown=new JButton("↑");
+        Leftdown.setBounds(600,70,50, 30);
+        panel.add(Leftdown);
+        ////////////////////KONIEC GORNY PANEL
         for(int i=0; i<26;i++)
         {
 
@@ -37,7 +59,7 @@ public class Panel extends JPanel {
             if(i==10 || i==19) kolumna=0;
             ////////////////////////////////////////////////////////////////////////////////////////////
             buttonArray[i] =
-            buttonArray[i] = new JButton(icon);
+                    buttonArray[i] = new JButton(icon);
             buttonArray[i].setText(String.valueOf(qwerty[i]));
             buttonArray[i].setHorizontalTextPosition(JButton.CENTER);
             buttonArray[i].setVerticalAlignment(JButton.CENTER);
