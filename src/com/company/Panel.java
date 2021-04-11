@@ -2,14 +2,13 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.*;
 
 public class Panel extends JPanel {
     Szyfrator sz1 = new Szyfrator();
     int stanP=1,stanL=1,stanS=1,znaleziona_szukajka;
     private String szukajka;
+    private boolean czywcisniete=false;
     char[] qwerty = {'Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'};
     private JPanel panel=new JPanel();
     private JLabel[] labelArray = new JLabel[26];
@@ -24,7 +23,9 @@ public class Panel extends JPanel {
     private  JButton middledown;
     private  JButton rightup;
     private  JButton rightdown;
-    Panel(){
+
+
+        Panel(){
         panel.setBackground(new Color(56,56,56));
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(800,600));
@@ -139,6 +140,8 @@ public class Panel extends JPanel {
         });
         ////////////////////KONIEC FUNKCJI
 
+        ////////////////////EVENTY MYSZY
+
         for(int i=0; i<26;i++)
         {
 
@@ -204,35 +207,44 @@ public class Panel extends JPanel {
             buttonArray[i].setFocusPainted(false);
             panel.add( buttonArray[i]);
             int finalI = i;
-            buttonArray[i].addActionListener(new ActionListener() {
+
+            buttonArray[i].addMouseListener(new MouseAdapter() {    //WCISKANIE GUZIKA
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    szukajka=sz1.szyfruj(buttonArray[finalI].getText().toString(),stanP,stanS,stanL);
-                    System.out.println(sz1.szyfruj(buttonArray[finalI].getText().toString(),stanP,stanS,stanL));
-                    for(int pom=0; pom<26; pom++){
-                        if(szukajka.charAt(0)==qwerty[pom]){
-                            znaleziona_szukajka=pom;
+                public void mousePressed(MouseEvent e) {
+                    szukajka = sz1.szyfruj(buttonArray[finalI].getText().toString(), stanP, stanS, stanL);
+                    // System.out.println(sz1.szyfruj(buttonArray[finalI].getText().toString(), stanP, stanS, stanL));
+                    for (int pom = 0; pom < 26; pom++) {
+                        if (szukajka.charAt(0) == qwerty[pom]) {
+                            znaleziona_szukajka = pom;
                             break;
                         }
                     }
                     labelArray[znaleziona_szukajka].setIcon(new ImageIcon("Java-Enigma/pog.png"));
-                    if(stanP>25){
-                        stanP=0;
+                    if (stanP > 25) {
+                        stanP = 0;
                         stanS++;
                         srodkowy.setText(String.valueOf(stanS));
                     }
-                    if(stanS>26){
-                        stanS=1;
+                    if (stanS > 26) {
+                        stanS = 1;
                         stanL++;
                         srodkowy.setText(String.valueOf(stanS));
                         lewy.setText(String.valueOf(stanL));
                     }
-                    if(stanL>26) {
+                    if (stanL > 26) {
                         stanL = 1;
                         lewy.setText(String.valueOf(stanL));
                     }
                     stanP++;
                     prawy.setText(String.valueOf(stanP));
+                }
+
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    super.mouseReleased(e);
+                    czywcisniete = false;
+                    labelArray[znaleziona_szukajka].setIcon(new ImageIcon("Java-Enigma/Bez nazwy.png"));
                 }
             });
             kolumna+=60;
@@ -240,7 +252,6 @@ public class Panel extends JPanel {
         }
 
     }
-
 
     public JPanel getPanel() {
         return panel;
