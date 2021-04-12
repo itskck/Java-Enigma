@@ -7,6 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Enigma");
+        Image ikona = Toolkit.getDefaultToolkit().getImage("logo.png");
+        frame.setIconImage(ikona);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(new Panel().getPanel());
         frame.setResizable(false);
